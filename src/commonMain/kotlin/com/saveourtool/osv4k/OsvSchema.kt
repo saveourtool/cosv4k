@@ -781,7 +781,7 @@ data class Severity(
         defaultValue = "",
         access = JsonPropertyAccess.AUTO
     )
-    val scoreNum: Float,
+    val scoreNum: String,
 )
 
 /**
