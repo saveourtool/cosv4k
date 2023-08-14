@@ -193,6 +193,60 @@ data class OsvSchema<D, A_E, A_D, A_R_D>(
         access = JsonPropertyAccess.AUTO
     )
     val related: List<String>? = null,
+    @SerialName("cwe_ids")
+    @get:JsonProperty(
+        value = "cwe_ids",
+        namespace = "",
+        required = false,
+        index = -1,
+        defaultValue = "",
+        access = JsonPropertyAccess.AUTO
+    )
+    @JsonProperty(
+        value = "cwe_ids",
+        namespace = "",
+        required = false,
+        index = -1,
+        defaultValue = "",
+        access = JsonPropertyAccess.AUTO
+    )
+    val cweIds: List<String>? = null,
+    @SerialName("cwe_names")
+    @get:JsonProperty(
+        value = "cwe_names",
+        namespace = "",
+        required = false,
+        index = -1,
+        defaultValue = "",
+        access = JsonPropertyAccess.AUTO
+    )
+    @JsonProperty(
+        value = "cwe_names",
+        namespace = "",
+        required = false,
+        index = -1,
+        defaultValue = "",
+        access = JsonPropertyAccess.AUTO
+    )
+    val cweNames: List<String>? = null,
+    @SerialName("time_line")
+    @get:JsonProperty(
+        value = "time_line",
+        namespace = "",
+        required = false,
+        index = -1,
+        defaultValue = "",
+        access = JsonPropertyAccess.AUTO
+    )
+    @JsonProperty(
+        value = "time_line",
+        namespace = "",
+        required = false,
+        index = -1,
+        defaultValue = "",
+        access = JsonPropertyAccess.AUTO
+    )
+    val timeLine: List<TimeLineEntry>? = null,
     @JsonProperty(
         value = "summary",
         namespace = "",
@@ -265,6 +319,33 @@ data class OsvSchema<D, A_E, A_D, A_R_D>(
         access = JsonPropertyAccess.AUTO
     )
     val databaseSpecific: D? = null,
+    @JsonProperty(
+        value = "contributors",
+        namespace = "",
+        required = false,
+        index = -1,
+        defaultValue = "",
+        access = JsonPropertyAccess.AUTO
+    )
+    val contributors: List<Contributor>? = null,
+    @SerialName("confirm_type")
+    @JsonProperty(
+        value = "confirm_type",
+        namespace = "",
+        required = false,
+        index = -1,
+        defaultValue = "",
+        access = JsonPropertyAccess.AUTO
+    )
+    @get:JsonProperty(
+        value = "confirm_type",
+        namespace = "",
+        required = false,
+        index = -1,
+        defaultValue = "",
+        access = JsonPropertyAccess.AUTO
+    )
+    val confirmType: ConfirmType? = null,
 )
 
 /**
@@ -362,6 +443,25 @@ data class Affected<E, D, R_D>(
         access = JsonPropertyAccess.AUTO
     )
     val databaseSpecific: D? = null,
+
+    @SerialName("patches_detail")
+    @get:JsonProperty(
+        value = "patches_detail",
+        namespace = "",
+        required = false,
+        index = -1,
+        defaultValue = "",
+        access = JsonPropertyAccess.AUTO
+    )
+    @JsonProperty(
+        value = "patches_detail",
+        namespace = "",
+        required = false,
+        index = -1,
+        defaultValue = "",
+        access = JsonPropertyAccess.AUTO
+    )
+    val patchesDetail: List<PatchDetail>? = null,
 )
 
 /**
@@ -403,7 +503,61 @@ data class Package(
         defaultValue = "",
         access = JsonPropertyAccess.AUTO
     )
-    val purl: String? = null
+    val purl: String? = null,
+    @JsonProperty(
+        value = "language",
+        namespace = "",
+        required = false,
+        index = -1,
+        defaultValue = "",
+        access = JsonPropertyAccess.AUTO
+    )
+    val language: String? = null,
+    @JsonProperty(
+        value = "repository",
+        namespace = "",
+        required = false,
+        index = -1,
+        defaultValue = "",
+        access = JsonPropertyAccess.AUTO
+    )
+    val repository: String? = null,
+    @JsonProperty(
+        value = "introduced_commits",
+        namespace = "",
+        required = false,
+        index = -1,
+        defaultValue = "",
+        access = JsonPropertyAccess.AUTO
+    )
+    val introducedCommits: List<String>? = null,
+    @JsonProperty(
+        value = "fixed_commits",
+        namespace = "",
+        required = false,
+        index = -1,
+        defaultValue = "",
+        access = JsonPropertyAccess.AUTO
+    )
+    val fixedCommits: List<String>? = null,
+    @JsonProperty(
+        value = "home_page",
+        namespace = "",
+        required = false,
+        index = -1,
+        defaultValue = "",
+        access = JsonPropertyAccess.AUTO
+    )
+    val homePage: String? = null,
+    @JsonProperty(
+        value = "edition",
+        namespace = "",
+        required = false,
+        index = -1,
+        defaultValue = "",
+        access = JsonPropertyAccess.AUTO
+    )
+    val edition: String? = null,
 )
 
 /**
@@ -600,7 +754,34 @@ data class Severity(
         defaultValue = "",
         access = JsonPropertyAccess.AUTO
     )
-    val score: String
+    val score: String,
+    @JsonProperty(
+        value = "level",
+        namespace = "",
+        required = false,
+        index = -1,
+        defaultValue = "",
+        access = JsonPropertyAccess.AUTO
+    )
+    val level: SeverityLevel,
+    @SerialName("score_num")
+    @get:JsonProperty(
+        value = "score_num",
+        namespace = "",
+        required = false,
+        index = -1,
+        defaultValue = "",
+        access = JsonPropertyAccess.AUTO
+    )
+    @JsonProperty(
+        value = "score_num",
+        namespace = "",
+        required = false,
+        index = -1,
+        defaultValue = "",
+        access = JsonPropertyAccess.AUTO
+    )
+    val scoreNum: Float,
 )
 
 /**
@@ -609,6 +790,18 @@ data class Severity(
 enum class SeverityType {
     CVSS_V2,
     CVSS_V3,
+    ;
+}
+
+/**
+ *
+ */
+enum class SeverityLevel {
+    None,
+    Low,
+    Medium,
+    High,
+    Critical,
     ;
 }
 
@@ -769,4 +962,155 @@ enum class ReferenceType {
      */
     WEB,
     ;
+}
+
+/**
+ * the life cycle of the vulnerability itself, this should be distinguished from “published” or
+ * “withdrawn” which describes time points of this vulnerability entry not the vulnerability
+ * itself
+ *
+ * @property type
+ * @property value
+ */
+@Serializable
+data class TimeLineEntry(
+    val type: TimeLineEntryType,
+    val value: LocalDateTime,
+)
+
+/**
+ * TODO
+ */
+enum class TimeLineEntryType {
+    introduced,
+    found,
+    fixed,
+    disclosed,
+    ;
+}
+
+/**
+ * @property patchUrl
+ * @property issueUrl
+ * @property mainLanguage
+ * @property author
+ * @property committer
+ * @property branches
+ * @property tags
+ */
+@Serializable
+data class PatchDetail(
+    @SerialName("patch_url")
+    @get:JsonProperty(
+        value = "patch_url",
+        namespace = "",
+        required = false,
+        index = -1,
+        defaultValue = "",
+        access = JsonPropertyAccess.AUTO
+    )
+    @JsonProperty(
+        value = "patch_url",
+        namespace = "",
+        required = false,
+        index = -1,
+        defaultValue = "",
+        access = JsonPropertyAccess.AUTO
+    )
+    val patchUrl: String? = null,
+    @SerialName("issue_url")
+    @get:JsonProperty(
+        value = "issue_url",
+        namespace = "",
+        required = false,
+        index = -1,
+        defaultValue = "",
+        access = JsonPropertyAccess.AUTO
+    )
+    @JsonProperty(
+        value = "issue_url",
+        namespace = "",
+        required = false,
+        index = -1,
+        defaultValue = "",
+        access = JsonPropertyAccess.AUTO
+    )
+    val issueUrl: String? = null,
+    @SerialName("main_language")
+    @get:JsonProperty(
+        value = "main_language",
+        namespace = "",
+        required = false,
+        index = -1,
+        defaultValue = "",
+        access = JsonPropertyAccess.AUTO
+    )
+    @JsonProperty(
+        value = "main_language",
+        namespace = "",
+        required = false,
+        index = -1,
+        defaultValue = "",
+        access = JsonPropertyAccess.AUTO
+    )
+    val mainLanguage: String? = null,
+    @JsonProperty(
+        value = "author",
+        namespace = "",
+        required = false,
+        index = -1,
+        defaultValue = "",
+        access = JsonPropertyAccess.AUTO
+    )
+    val author: String? = null,
+    @JsonProperty(
+        value = "committer",
+        namespace = "",
+        required = false,
+        index = -1,
+        defaultValue = "",
+        access = JsonPropertyAccess.AUTO
+    )
+    val committer: String? = null,
+    @JsonProperty(
+        value = "branches",
+        namespace = "",
+        required = false,
+        index = -1,
+        defaultValue = "",
+        access = JsonPropertyAccess.AUTO
+    )
+    val branches: List<String>? = null,
+    @JsonProperty(
+        value = "tags",
+        namespace = "",
+        required = false,
+        index = -1,
+        defaultValue = "",
+        access = JsonPropertyAccess.AUTO
+    )
+    val tags: List<String>? = null,
+)
+
+/**
+ * @property org the organization info of each contributor
+ * @property name the name of each contributor
+ * @property email the email address of each contributor
+ * @property contributions the description of the contributions each contributor has made
+ */
+@Serializable
+data class Contributor(
+    val org: String? = null,
+    val name: String? = null,
+    val email: String? = null,
+    val contributions: String? = null,
+)
+
+/**
+ * the confirmation type of this vulnerability record
+ */
+enum class ConfirmType {
+    manual_confirmed,
+    algorithm_confirmed,
+    double_confirmed,
 }
