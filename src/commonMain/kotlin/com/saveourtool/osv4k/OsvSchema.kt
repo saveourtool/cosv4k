@@ -810,7 +810,8 @@ enum class SeverityType {
  * Human-readable level of severity calculated from score
  */
 @Suppress(
-    "ENUM_VALUE", "EnumNaming",
+    "ENUM_VALUE",
+    "EnumNaming",
     "WRONG_DECLARATIONS_ORDER",
 )
 enum class SeverityLevel {
@@ -999,7 +1000,8 @@ data class TimeLineEntry(
  * Type of [TimeLineEntry]
  */
 @Suppress(
-    "ENUM_VALUE", "EnumNaming",
+    "ENUM_VALUE",
+    "EnumNaming",
     "WRONG_DECLARATIONS_ORDER",
 )
 enum class TimeLineEntryType {
@@ -1131,7 +1133,8 @@ data class Contributor(
  * the confirmation type of this vulnerability record
  */
 @Suppress(
-    "ENUM_VALUE", "EnumNaming",
+    "ENUM_VALUE",
+    "EnumNaming",
     "WRONG_DECLARATIONS_ORDER",
 )
 enum class ConfirmType {
