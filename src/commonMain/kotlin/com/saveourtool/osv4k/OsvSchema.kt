@@ -25,6 +25,9 @@ typealias RawOsvSchema = OsvSchema<JsonObject, JsonObject, JsonObject, JsonObjec
  * @property withdrawn
  * @property aliases
  * @property related
+ * @property cweIds
+ * @property cweNames
+ * @property timeLine
  * @property summary
  * @property details
  * @property severity
@@ -32,6 +35,8 @@ typealias RawOsvSchema = OsvSchema<JsonObject, JsonObject, JsonObject, JsonObjec
  * @property references
  * @property credits
  * @property databaseSpecific
+ * @property contributors
+ * @property confirmType
  */
 @Serializable
 @JsonInclude(
@@ -468,6 +473,12 @@ data class Affected<E, D, R_D>(
  * @property ecosystem
  * @property name
  * @property purl
+ * @property language
+ * @property repository
+ * @property introducedCommits
+ * @property fixedCommits
+ * @property homePage
+ * @property edition
  */
 @Serializable
 @JsonInclude(
@@ -728,6 +739,8 @@ enum class RangeType {
 /**
  * @property type
  * @property score
+ * @property level
+ * @property scoreNum
  */
 @Serializable
 @JsonInclude(
@@ -794,8 +807,12 @@ enum class SeverityType {
 }
 
 /**
- *
+ * Human-readable level of severity calculated from score
  */
+@Suppress(
+    "ENUM_VALUE", "EnumNaming",
+    "WRONG_DECLARATIONS_ORDER",
+)
 enum class SeverityLevel {
     None,
     Low,
@@ -979,8 +996,12 @@ data class TimeLineEntry(
 )
 
 /**
- * TODO
+ * Type of [TimeLineEntry]
  */
+@Suppress(
+    "ENUM_VALUE", "EnumNaming",
+    "WRONG_DECLARATIONS_ORDER",
+)
 enum class TimeLineEntryType {
     introduced,
     found,
@@ -1109,8 +1130,13 @@ data class Contributor(
 /**
  * the confirmation type of this vulnerability record
  */
+@Suppress(
+    "ENUM_VALUE", "EnumNaming",
+    "WRONG_DECLARATIONS_ORDER",
+)
 enum class ConfirmType {
     manual_confirmed,
     algorithm_confirmed,
     double_confirmed,
+    ;
 }
