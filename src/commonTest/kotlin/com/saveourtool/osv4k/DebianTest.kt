@@ -7,7 +7,7 @@ import kotlin.test.Test
 
 class DebianTest {
     @Test
-    fun `DSA-3029-1`() {
+    fun dsa_3029_1() {
         // language=JSON
         doEncodeDecodeAndCompare(
             """

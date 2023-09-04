@@ -7,7 +7,7 @@ import kotlin.test.Test
 
 class CosvTest {
     @Test
-    fun `COSV with severity`() {
+    fun cosvWithSeverity() {
         // language=JSON
         doEncodeDecodeAndCompare(
             """
