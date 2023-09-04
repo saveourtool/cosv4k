@@ -1,4 +1,8 @@
-@file:Suppress("LONG_LINE", "TOO_LONG_FUNCTION")
+@file:Suppress(
+    "LONG_LINE",
+    "TOO_LONG_FUNCTION",
+    "FUNCTION_NAME_INCORRECT_CASE",
+)
 
 package com.saveourtool.osv4k
 
@@ -7,7 +11,7 @@ import kotlin.test.Test
 
 class GoTest {
     @Test
-    fun `GO-2020-0015`() {
+    fun go_2020_0015() {
         // language=JSON
         doEncodeDecodeAndCompare(
             """
@@ -95,7 +99,7 @@ class GoTest {
     }
 
     @Test
-    fun `GO-2022-0189`() {
+    fun go_2022_0189() {
         // language=JSON
         doEncodeDecodeAndCompare(
             """
@@ -178,7 +182,7 @@ class GoTest {
     }
 
     @Test
-    fun `GO-2022-0191`() {
+    fun go_2022_0191() {
         // language=JSON
         doEncodeDecodeAndCompare(
             """

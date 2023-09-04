@@ -1,4 +1,8 @@
-@file:Suppress("LONG_LINE", "TOO_LONG_FUNCTION")
+@file:Suppress(
+    "LONG_LINE",
+    "TOO_LONG_FUNCTION",
+    "FUNCTION_NAME_INCORRECT_CASE",
+)
 
 package com.saveourtool.osv4k
 
@@ -7,7 +11,7 @@ import kotlin.test.Test
 
 class DebianTest {
     @Test
-    fun `DSA-3029-1`() {
+    fun dsa_3029_1() {
         // language=JSON
         doEncodeDecodeAndCompare(
             """
