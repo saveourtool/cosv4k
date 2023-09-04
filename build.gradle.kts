@@ -28,6 +28,10 @@ kotlin {
             useCommonJs()
         }
     )
+    // store yarn.lock in the root directory
+    rootProject.extensions.configure<org.jetbrains.kotlin.gradle.targets.js.yarn.YarnRootExtension> {
+        lockFileDirectory = rootProject.projectDir
+    }
     sourceSets {
         val commonMain by getting {
             dependencies {
