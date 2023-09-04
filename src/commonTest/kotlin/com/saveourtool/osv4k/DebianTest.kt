@@ -1,4 +1,8 @@
-@file:Suppress("LONG_LINE", "TOO_LONG_FUNCTION")
+@file:Suppress(
+    "LONG_LINE",
+    "TOO_LONG_FUNCTION",
+    "FUNCTION_NAME_INCORRECT_CASE",
+)
 
 package com.saveourtool.osv4k
 
