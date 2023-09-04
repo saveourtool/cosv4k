@@ -31,6 +31,7 @@ jobs:
       contents: write
       pull-requests: write
       statuses: write
+      packages: write
 
     steps:
       - uses: actions/checkout@v3
