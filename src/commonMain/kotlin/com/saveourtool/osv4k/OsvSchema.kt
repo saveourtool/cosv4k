@@ -5,6 +5,7 @@ package com.saveourtool.osv4k
 import com.saveourtool.osv4k.jackson.*
 import com.saveourtool.osv4k.utils.LocalDateTimeRfc3339Serializer
 import kotlinx.datetime.LocalDateTime
+import kotlinx.serialization.EncodeDefault
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonObject
@@ -27,7 +28,7 @@ typealias RawOsvSchema = OsvSchema<JsonObject, JsonObject, JsonObject, JsonObjec
  * @property related
  * @property cweIds
  * @property cweNames
- * @property timeLine
+ * @property timeline
  * @property summary
  * @property details
  * @property severity
@@ -47,6 +48,7 @@ typealias RawOsvSchema = OsvSchema<JsonObject, JsonObject, JsonObject, JsonObjec
 )
 @Suppress("GENERIC_NAME", "TYPE_ALIAS")
 data class OsvSchema<D, A_E, A_D, A_R_D>(
+    @EncodeDefault
     @SerialName("schema_version")
     @get:JsonProperty(
         value = "schema_version",
@@ -234,9 +236,8 @@ data class OsvSchema<D, A_E, A_D, A_R_D>(
         access = JsonPropertyAccess.AUTO
     )
     val cweNames: List<String>? = null,
-    @SerialName("time_line")
     @get:JsonProperty(
-        value = "time_line",
+        value = "timeline",
         namespace = "",
         required = false,
         index = -1,
@@ -244,14 +245,14 @@ data class OsvSchema<D, A_E, A_D, A_R_D>(
         access = JsonPropertyAccess.AUTO
     )
     @JsonProperty(
-        value = "time_line",
+        value = "timeline",
         namespace = "",
         required = false,
         index = -1,
         defaultValue = "",
         access = JsonPropertyAccess.AUTO
     )
-    val timeLine: List<TimeLineEntry>? = null,
+    val timeline: List<TimelineEntry>? = null,
     @JsonProperty(
         value = "summary",
         namespace = "",
@@ -991,20 +992,61 @@ enum class ReferenceType {
  * @property value
  */
 @Serializable
-data class TimeLineEntry(
-    val type: TimeLineEntryType,
+data class TimelineEntry(
+    @JsonProperty(
+        value = "type",
+        namespace = "",
+        required = false,
+        index = -1,
+        defaultValue = "",
+        access = JsonPropertyAccess.AUTO
+    )
+    val type: TimelineEntryType,
+    @Serializable(with = LocalDateTimeRfc3339Serializer::class)
+    @JsonSerialize(
+        using = LocalDateTimeRfc3339JacksonSerializer::class,
+        contentUsing = JsonSerializerNone::class,
+        keyUsing = JsonSerializerNone::class,
+        nullsUsing = JsonSerializerNone::class,
+        `as` = JavaVoid::class,
+        keyAs = JavaVoid::class,
+        contentAs = JavaVoid::class,
+        typing = JsonSerializeTyping.DEFAULT_TYPING,
+        converter = ConverterNone::class,
+        contentConverter = ConverterNone::class,
+        include = JsonSerializeInclusion.DEFAULT_INCLUSION,
+    )
+    @JsonDeserialize(
+        using = LocalDateTimeRfc3339JacksonDeserializer::class,
+        contentUsing = JsonDeserializerNone::class,
+        keyUsing = KeyDeserializerNone::class,
+        builder = JavaVoid::class,
+        converter = ConverterNone::class,
+        contentConverter = ConverterNone::class,
+        `as` = JavaVoid::class,
+        keyAs = JavaVoid::class,
+        contentAs = JavaVoid::class,
+    )
+    @JsonProperty(
+        value = "value",
+        namespace = "",
+        required = false,
+        index = -1,
+        defaultValue = "",
+        access = JsonPropertyAccess.AUTO
+    )
     val value: LocalDateTime,
 )
 
 /**
- * Type of [TimeLineEntry]
+ * Type of [TimelineEntry]
  */
 @Suppress(
     "ENUM_VALUE",
     "EnumNaming",
     "WRONG_DECLARATIONS_ORDER",
 )
-enum class TimeLineEntryType {
+enum class TimelineEntryType {
     introduced,
     found,
     fixed,
@@ -1123,9 +1165,41 @@ data class PatchDetail(
  */
 @Serializable
 data class Contributor(
+    @JsonProperty(
+        value = "org",
+        namespace = "",
+        required = false,
+        index = -1,
+        defaultValue = "",
+        access = JsonPropertyAccess.AUTO
+    )
     val org: String? = null,
+    @JsonProperty(
+        value = "name",
+        namespace = "",
+        required = false,
+        index = -1,
+        defaultValue = "",
+        access = JsonPropertyAccess.AUTO
+    )
     val name: String? = null,
+    @JsonProperty(
+        value = "email",
+        namespace = "",
+        required = false,
+        index = -1,
+        defaultValue = "",
+        access = JsonPropertyAccess.AUTO
+    )
     val email: String? = null,
+    @JsonProperty(
+        value = "contributions",
+        namespace = "",
+        required = false,
+        index = -1,
+        defaultValue = "",
+        access = JsonPropertyAccess.AUTO
+    )
     val contributions: String? = null,
 )
 
