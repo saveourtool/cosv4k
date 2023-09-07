@@ -8,12 +8,12 @@ import kotlin.test.Test
 class CosvTest {
     @Test
     fun cosvWithSeverity() {
-        doEncodeDecodeAndCompare(COSV_EXAMPLE)
+        doEncodeDecodeAndCompare(cosvExample)
     }
 
     companion object {
         // language=JSON
-        val COSV_EXAMPLE = """
+        val cosvExample = """
                         {
                           "schema_version": "1.0.0",
                           "id": "DSA-3029-1",

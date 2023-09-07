@@ -4,11 +4,17 @@ package com.saveourtool.osv4k
 
 import kotlin.test.Test
 
-class CosvTestInJava {
+/**
+ * Test for COSV using Jackson
+ */
+class CosvTestUsingJackson {
+    /**
+     * A simple test
+     */
     @Test
-    fun cosvWithSeverity() {
+    fun simpleTest() {
         OsvSchemaJacksonJavaTestUtil.doEncodeDecodeAndCompare(
-            CosvTest.COSV_EXAMPLE
+            CosvTest.cosvExample
         )
     }
 }
