@@ -16,6 +16,7 @@ class DebianTest {
         doEncodeDecodeAndCompare(
             """
                         {
+                          "schema_version": "1.0.0",
                           "id": "DSA-3029-1",
                           "modified": "2014-09-20T08:18:07Z",
                           "published": "2014-09-20T00:00:01Z",
