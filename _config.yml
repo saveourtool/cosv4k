@@ -4,4 +4,4 @@ relative_links:
   enabled: true
   collections: true
 include:
-  - Schema.md
+  - docs/Schema.md
