@@ -56,3 +56,104 @@ The exact details of each field are elaborated in the next section. All strings 
 }
 ```
 
+# Field Details
+
+### schema_version field
+
+```json
+{
+	"schema_version": "string"
+}
+```
+
+The `schema_version` field is used to indicate which version of the **COSV** schema
+a particular vulnerability was exported with.
+This can help consumer applications decide how to import the data for
+their own systems and offer some protection against future breaking changes.
+The value should be a string matching the **COSV** schema version, which follows
+the [SemVer 2.0.0](https://semver.org/) format, with no leading “v” prefix. If no value is specified,
+it should be assumed to be `1.0.0`, matching version `1.0` of the **COSV** schema.
+
+### id, modified fields
+
+```json
+{
+  "id": "string",
+  "modified": "string"
+}
+```
+
+The id field is a unique identifier for the vulnerability entry.\
+It is a string of the format `<DB>-<ENTRYID>`, where `DB` names the database and `ENTRYID`
+is in the format used by the database.
+For example: `“OSV-2020-111”`, `“CVE-2021-3114”`, or `“GHSA-vp9c-fpxx-744v”`.
+
+### published field
+
+```json
+{
+	"published": "string"
+}
+```
+
+The `published` field gives the time the entry should be considered to have been published,
+as an RFC3339-formatted time stamp in UTC (ending in “Z”).
+
+### withdrawn field
+
+```json
+{
+	"withdrawn": "string"
+}
+```
+
+The withdrawn field gives the time the entry should be considered to have been withdrawn,
+as an RFC3339-formatted timestamp in UTC (ending in “Z”).
+If the field is missing, then the entry has not been withdrawn.
+Any rationale for why the vulnerability has been withdrawn should go into the summary text.
+
+### aliases field
+
+```json
+{
+	"aliases": [ "string" ]
+}
+```
+
+The aliases field gives a list of IDs of the same vulnerability in other databases,
+in the form of the id field.
+This allows one database to claim that its own entry describes
+the same vulnerability as one or more entries in other databases.
+
+Aliases should be considered symmetric and transitive.
+
+### related field
+
+```json
+{
+  "related": [ "string" ]
+}
+```
+
+The `related` field gives a list of IDs of closely related vulnerabilities, such as:
+
+* A similar but completely different vulnerability.
+* A similar OSV entry that bundles multiple distinct vulnerabilities in the same entry.
+* Cases that do not satisfy the strict definition of `aliases`.
+
+Related vulnerabilities are symmetric but not transitive.
+
+### summary, details fields
+
+```json
+{
+	"summary": "string",
+	"details": "string"
+}
+```
+
+The `summary` field gives a one-line, English textual summary of the vulnerability. 
+It is recommended that this field be kept short, on the order of no more than 120 characters.
+
+The `details` field gives additional English textual details about the vulnerability.
+
