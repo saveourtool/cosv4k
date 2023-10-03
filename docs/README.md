@@ -40,7 +40,9 @@ The exact details of each field are elaborated in the next section. All strings 
 		},
 		"severity": [ {
 			"type": "string",
-			"score": "string"
+			"score": "string",
+            "level": "string",
+            "score_num": "string"
 		} ],
 		"ranges": [ {
 			"type": "string",
@@ -57,6 +59,15 @@ The exact details of each field are elaborated in the next section. All strings 
 		"ecosystem_specific": { "see description"  : "" },
 		"database_specific": { "see description"  : "" }
 	} ],
+        "patches_detail": [ {
+          "patch_url": "string",
+          "issue_url": "string",
+          "main_language": "string",
+          "author": "string",
+          "commiter": "string",
+          "branches": [ "string" ],
+          "tags": [ "string" ]
+        } ],
 	"references": [ {
 		"type": "string",
 		"url": "string"
@@ -366,6 +377,52 @@ holding additional information about the vulnerability as defined by the databas
 from which the record was obtained.
 The meaning of the values within the object is entirely defined by the
 database and beyond the scope of this document.
+
+
+### patches_detail
+
+```json
+{
+	"patches_detail": [ {
+		"patch_url": "string",
+		"issue_url": "string",
+		"main_language": "string",
+		"author": "string",
+		"commiter": "string",
+		"branches": [ "string" ],
+        "tags": [ "string" ]
+	} ]
+}
+```
+
+The detail info of the fix patch of each vulnerability
+
+#### patches_detail[].patch_url
+
+The URL of fix patch
+
+#### patches_detail[].issue_url
+
+The URL of the issue
+
+#### patches_detail[].main_language
+
+The main code language of this vulnerability
+
+#### patches_detail[].author
+
+The author of the fix commit
+
+#### patches_detail[].commiter
+
+The commiter of the fix commit
+
+#### patches_detail[].branches
+
+The tag names of this fixing patch.
+
+#### patches_detail[].tags
+
 
 ### references field
 
