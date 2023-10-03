@@ -157,3 +157,76 @@ It is recommended that this field be kept short, on the order of no more than 12
 
 The `details` field gives additional English textual details about the vulnerability.
 
+### severity field
+
+```json
+{
+	"severity": [ {
+		"type": "string",
+		"score": string
+	} ]
+}
+```
+
+The `severity` field is a JSON array that allows generating systems
+to describe the severity of a vulnerability using one or more quantitative scoring methods.
+Each severity item is a JSON object specifying a type and score property, described below.
+
+#### severity[].type field
+
+The `severity[].type` property must be one of the types defined below,
+which describes the quantitative method used to calculate the associated `score`.
+
+* CVSS_V2 A CVSS vector string representing the unique characteristics and severity of the vulnerability using a version
+  of the Common Vulnerability Scoring System notation that is == 2.0\
+  `(e.g."AV:L/AC:M/Au:N/C:N/I:P/A:C")`.
+
+* CVSS_V3 A CVSS vector string representing the unique characteristics and severity of the vulnerability using a version
+  of the Common Vulnerability Scoring System notation that is >= 3.0 and < 4.0 (e.g."CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:C/C:H/I:N/A:N").
+
+#### severity[].score field
+The `severity[].score` property is a string representing the severity score based on the
+selected `severity[].type`, as described above.
+
+### affected fields
+
+```json
+{
+	"affected": [ {
+		"package": {
+			"ecosystem": "string",
+			"name": "string",
+			"purl": "string"
+		},
+		"severity": [ {
+			"type": "string",
+			"score": "string"
+		} ],
+		"ranges": [ {
+			"type": "string",
+			"repo": "string",
+			"events": [ {
+				"introduced": "string",
+				"fixed": "string",
+				"last_affected": "string",
+				"limit": "string"
+			} ]
+		} ],
+		"versions": [ "string" ],
+		"ecosystem_specific": { "see description" : "" },
+		"database_specific": { "see description" : "" }
+	} ]
+}
+```
+
+The `affected` field is a JSON array containing objects that describes the affected package versions,
+meaning those that contain the vulnerability.
+
+#### affected[].package field
+
+The affected object’s package field is a JSON object identifying the affected code library or command provided by the package.
+The object itself has two required fields
+
+* `ecosystem` The ecosystem identifies the overall library ecosystem 
+* `name`  The name field is a string identifying the library within its ecosystem.
+* **optional** `purl` The purl field is a string following the Package URL specification that identifies the package..
