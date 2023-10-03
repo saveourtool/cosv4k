@@ -303,7 +303,9 @@ e.g, for CVSS3 score, the value is between 0 and 10 with one decimal place.
 		},
 		"severity": [ {
 			"type": "string",
-			"score": "string"
+			"score": "string",
+			"level": "string",
+			"score_num": "string"
 		} ],
 		"ranges": [ {
 			"type": "string",
@@ -407,7 +409,7 @@ database and beyond the scope of this document.
 		"author": "string",
 		"commiter": "string",
 		"branches": [ "string" ],
-        "tags": [ "string" ]
+		"tags": [ "string" ]
 	} ]
 }
 ```
