@@ -230,3 +230,50 @@ The object itself has two required fields
 * `ecosystem` The ecosystem identifies the overall library ecosystem 
 * `name`  The name field is a string identifying the library within its ecosystem.
 * **optional** `purl` The purl field is a string following the Package URL specification that identifies the package..
+
+#### affected[].severity field
+
+The severity field is an optional element defined here.
+This severity field applies to a specific package,
+in cases where affected packages have differing severities for the same vulnerability.
+If any package level severity fields are set, the top level severity must not be set.
+
+#### affected[].versions field
+
+The affected object’s versions field is a JSON array of strings.
+Each string is a single affected version in whatever version syntax is used by the
+given package ecosystem.
+
+#### affected[].ranges[] field
+
+The affected object’s ranges field is a JSON array of objects describing the affected ranges of versions.
+
+#### affected[].ranges[].type field
+
+In the `ranges` field, the type field is required.
+It specifies the type of version range being recorded and defines the interpretation
+of the events object’s introduced, fixed, and any type-specific fields.
+
+#### affected[].ranges[].events fields
+
+The `ranges` object’s `events` field is a JSON array of objects. Each object describes a single version that either:
+
+* Introduces a vulnerability: {"introduced": "string"}
+* Fixes a vulnerability: {"fixed": "string"}
+* Describes the last known affected version: {"last_affected": "string"}
+* Sets an uper limit on the range being described: {"limit": "string"}
+
+#### affected[].ranges[].repo field
+
+The `ranges` object’s `repo` field is the URL of the package’s code repository.
+The value should be in a format that’s directly usable as an argument for the version control system’s clone command (e.g. git clone).
+
+#### affected[].ranges[].database_specific field
+
+The `ranges` object’s `database_specific` field is a JSON object holding additional information about the range from which the record was obtained.
+
+#### affected[].ecosystem_specific field
+
+The `affected` object’s `ecosystem_specific` field is a JSON object holding additional information about
+the vulnerability as defined by the ecosystem for which the record applies.
+The meaning of the values within the object is entirely defined by the ecosystem and beyond the scope of this document.
