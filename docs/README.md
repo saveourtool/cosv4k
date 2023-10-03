@@ -277,3 +277,66 @@ The `ranges` object’s `database_specific` field is a JSON object holding addit
 The `affected` object’s `ecosystem_specific` field is a JSON object holding additional information about
 the vulnerability as defined by the ecosystem for which the record applies.
 The meaning of the values within the object is entirely defined by the ecosystem and beyond the scope of this document.
+
+#### affected[].database_specific field
+
+The `affected` object’s `database_specific` field is a JSON object
+holding additional information about the vulnerability as defined by the database
+from which the record was obtained.
+The meaning of the values within the object is entirely defined by the
+database and beyond the scope of this document.
+
+#### references field
+
+```json
+{
+  "references": [ {
+    "type": "string",
+    "url": "string"
+  } ]
+}
+```
+
+The references field contains a list of JSON objects describing references.
+Each object has a string field type specifying the type of reference,
+and a string field url.
+The url is the fully-qualified URL (including the scheme, typically “https://”)
+linking to additional information, advisories, issue tracker entries,
+and so on about the vulnerability itself. The type specifies what kind of reference the URL is.
+
+#### credits fields
+
+```json
+{
+	"credits": [ {
+		"name": "string",
+		"contact": [ "string" ],
+		"type": "string"
+	} ]
+}
+```
+
+The credits field is a JSON array providing a way to give credit for the discovery,
+confirmation, patch, or other events in the life cycle of a vulnerability.
+
+Each of the objects in the credits array must contain at minimum a `name` field specifying
+the name of the individual or entity being credited, using whatever notation they prefer.
+It can also optionally include a `contact` JSON array.
+
+### credits[].name field
+`credits[].name` should specify the name, label, or other identifier of the individual or entity being credited, using whatever notation the creditor prefers.
+
+### credits[].contact[] field
+Each `credits[].contact[]` entry should be a valid, fully qualified, plain-text URL at which the credited can be reached. Providing contacts is optional.
+
+#### credits[].type field
+The optional `credits[].type` field should specify the type or role of the individual or entity being credited.
+
+#### database_specific field
+The top-level `database_specific` field is a JSON object holding additional information about the vulnerability
+as defined by the database from which the record was obtained.
+
+Unlike the `affected[].database_specific` field which is specific to each affected product,
+this top-level field allows aggregator databases to add custom data that they considered applicable to the whole vulnerability.
+
+**Note** that this is a single field with key `database_specific`, which itself contains a JSON object with unspecified fields.
