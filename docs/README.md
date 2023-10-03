@@ -5,19 +5,27 @@ The exact details of each field are elaborated in the next section. All strings 
 
 ```json
 {
-	"schema_version": "string",
-	"id": "string",
-	"modified": "string",
-	"published": "string",
-	"withdrawn": "string",
-	"aliases": [ "string" ],
-	"related": [ "string" ],
-	"summary": "string",
-	"details": "string",
-	"severity": [ {
-		"type": "string",
-		"score": "string"
-	} ],
+    "schema_version": "string",
+    "id": "string",
+    "modified": "string",
+    "published": "string",
+    "withdrawn": "string",
+    "aliases": [ "string" ],
+    "cwe_ids": [ "string" ],
+    "cwe_names": [ "string" ],
+    "time_line": [ {
+        "type": "string",
+        "value": "string"
+    } ],
+    "related": [ "string" ],
+    "summary": "string",
+    "details": "string",
+    "severity": [ {
+        "type": "string",
+        "score": "string",
+        "level": "string",
+        "score_num": "string"
+    } ],
 	"affected": [ {
 		"package": {
 			"ecosystem": "string",
@@ -127,6 +135,49 @@ the same vulnerability as one or more entries in other databases.
 
 Aliases should be considered symmetric and transitive.
 
+### cwe_ids
+
+```json
+{
+	"cwe_ids": [ "string" ]
+}
+```
+
+The public defect enumeration ID's corresponding to the vulnerability type;
+
+### cwe_names
+
+```json
+{
+	"cwe_names": [ "string" ]
+}
+```
+
+The public defect enumeration name corresponding to the vulnerability type;
+
+### time_line
+
+The life cycle of the vulnerability itself,
+this should be distinguished from “published” or “withdrawn”
+which describes time points of this vulnerability entry not the vulnerability itself.
+
+```json
+{
+	"time_line": [ {
+		"type": "string",
+		"value": "string"
+	} ]
+}
+```
+
+#### time_line[].type
+
+The type of time point on the timeline, including but not limited to: “introduced”, “found”, “fixed”, “disclosed”; type of time point
+
+#### time_line[].value
+
+The value of the point in time, in line with the timestamp of UTC an RFC3339-formatted time stamp in UTC (ending in “Z”), e.g. “2023-03-13T16:43Z”
+
 ### related field
 
 ```json
@@ -163,7 +214,9 @@ The `details` field gives additional English textual details about the vulnerabi
 {
 	"severity": [ {
 		"type": "string",
-		"score": string
+		"score": "string",
+		"level": "string",
+		"score_num": "string"
 	} ]
 }
 ```
@@ -187,6 +240,16 @@ which describes the quantitative method used to calculate the associated `score`
 #### severity[].score field
 The `severity[].score` property is a string representing the severity score based on the
 selected `severity[].type`, as described above.
+
+#### severity[].level field
+Enumeration levels corresponding to the current level of danger,
+such as low-risk, medium-risk, high-risk, and critical
+
+#### severity[].score_num field
+
+Gives the base score num, calculated based on `severity[].score`,
+the value and calculation rules are defined by `severity[].type`.
+e.g, for CVSS3 score, the value is between 0 and 10 with one decimal place.
 
 ### affected fields
 
@@ -286,7 +349,7 @@ from which the record was obtained.
 The meaning of the values within the object is entirely defined by the
 database and beyond the scope of this document.
 
-#### references field
+### references field
 
 ```json
 {
@@ -304,7 +367,7 @@ The url is the fully-qualified URL (including the scheme, typically “https://�
 linking to additional information, advisories, issue tracker entries,
 and so on about the vulnerability itself. The type specifies what kind of reference the URL is.
 
-#### credits fields
+### credits fields
 
 ```json
 {
@@ -323,10 +386,10 @@ Each of the objects in the credits array must contain at minimum a `name` field 
 the name of the individual or entity being credited, using whatever notation they prefer.
 It can also optionally include a `contact` JSON array.
 
-### credits[].name field
+#### credits[].name field
 `credits[].name` should specify the name, label, or other identifier of the individual or entity being credited, using whatever notation the creditor prefers.
 
-### credits[].contact[] field
+#### credits[].contact[] field
 Each `credits[].contact[]` entry should be a valid, fully qualified, plain-text URL at which the credited can be reached. Providing contacts is optional.
 
 #### credits[].type field
