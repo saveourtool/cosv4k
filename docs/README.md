@@ -68,6 +68,13 @@ The exact details of each field are elaborated in the next section. All strings 
           "branches": [ "string" ],
           "tags": [ "string" ]
         } ],
+    "contributors": [ {
+      "org": "string",
+      "name": "string",
+      "email": "string",
+      "contributions": "string"
+    } ],
+    "confirm_type": "string",
 	"references": [ {
 		"type": "string",
 		"url": "string"
@@ -379,7 +386,7 @@ The meaning of the values within the object is entirely defined by the
 database and beyond the scope of this document.
 
 
-### patches_detail
+### patches_detail field
 
 ```json
 {
@@ -397,31 +404,76 @@ database and beyond the scope of this document.
 
 The detail info of the fix patch of each vulnerability
 
-#### patches_detail[].patch_url
+#### patches_detail[].patch_url field
 
 The URL of fix patch
 
-#### patches_detail[].issue_url
+#### patches_detail[].issue_url field
 
 The URL of the issue
 
-#### patches_detail[].main_language
+#### patches_detail[].main_language field
 
 The main code language of this vulnerability
 
-#### patches_detail[].author
+#### patches_detail[].author field
 
 The author of the fix commit
 
-#### patches_detail[].commiter
+#### patches_detail[].commiter field
 
 The commiter of the fix commit
 
-#### patches_detail[].branches
+#### patches_detail[].branches field
 
 The tag names of this fixing patch.
 
-#### patches_detail[].tags
+#### patches_detail[].tags field
+
+The tag names of this fixing patch.
+
+### contributors field:
+
+```json
+{
+	"contributors": [ {
+		"org": "string",
+		"name": "string",
+		"email": "string",
+		"contributions": "string"
+	} ]
+}
+```
+
+This field used to specify those persons or organizations who made contributions to this vulnerability record.
+
+#### contributors[].org field
+
+The organization info of each contributor
+
+#### contributors[].name field
+
+The name of each contributor
+
+#### contributors[].email field
+
+The email address of each contributor
+
+#### contributors[].contributions field
+
+The description of the contributions each contributor has made.
+
+
+### confirm_type field
+
+```json
+{
+  "confirm_type": "string"
+}
+```
+
+The confirmation type of this vulnerability record,
+value should be one of “manual_confirmed”, “algorithm_confirmed” or “double_confirmed”
 
 
 ### references field
