@@ -26,11 +26,17 @@ The exact details of each field are elaborated in the next section. All strings 
         "level": "string",
         "score_num": "string"
     } ],
-	"affected": [ {
+    "affected": [ {
 		"package": {
 			"ecosystem": "string",
 			"name": "string",
-			"purl": "string"
+			"purl": "string",
+			"language": "string",
+			"repository": "string",
+			"introduced_commits": [ "string" ],
+			"fixed_commits": [ "string" ],
+			"home_page:": "string",
+			"edition:": "string"
 		},
 		"severity": [ {
 			"type": "string",
@@ -259,7 +265,13 @@ e.g, for CVSS3 score, the value is between 0 and 10 with one decimal place.
 		"package": {
 			"ecosystem": "string",
 			"name": "string",
-			"purl": "string"
+			"purl": "string",
+			"language": "string",
+			"repository": "string",
+			"introduced_commits": [ "string" ],
+			"fixed_commits": [ "string" ],
+			"home_page:": "string",
+			"edition:": "string"
 		},
 		"severity": [ {
 			"type": "string",
@@ -293,6 +305,12 @@ The object itself has two required fields
 * `ecosystem` The ecosystem identifies the overall library ecosystem 
 * `name`  The name field is a string identifying the library within its ecosystem.
 * **optional** `purl` The purl field is a string following the Package URL specification that identifies the package..
+* `language:`  main developing language of this package.
+* `repository:`  the link of the open source repository of the package.
+* `introduced_commits`  the introducing commits of this vulnerability.
+* `fixed_commits`  Commit ID's; the fixing commits of this vulnerability.
+* `home_page`  home page of the package.
+* `edition:`  the distribution edition name of package, e.g., Alpine, Debian.
 
 #### affected[].severity field
 
