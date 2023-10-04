@@ -13,7 +13,7 @@ The exact details of each field are elaborated in the next section. All strings 
   "aliases": [ "string" ],
   "cwe_ids": [ "string" ],
   "cwe_names": [ "string" ],
-  "time_line": [ {
+  "timeline": [ {
       "type": "string",
       "value": "string"
     }
@@ -189,7 +189,7 @@ The public defect enumeration ID's corresponding to the vulnerability type;
 
 The public defect enumeration name corresponding to the vulnerability type;
 
-### time_line
+### timeline
 
 The life cycle of the vulnerability itself,
 this should be distinguished from “published” or “withdrawn”
@@ -197,18 +197,18 @@ which describes time points of this vulnerability entry not the vulnerability it
 
 ```json
 {
-	"time_line": [ {
+	"timeline": [ {
 		"type": "string",
 		"value": "string"
 	} ]
 }
 ```
 
-#### time_line[].type
+#### timeline[].type
 
 The type of time point on the timeline, including but not limited to: “introduced”, “found”, “fixed”, “disclosed”; type of time point
 
-#### time_line[].value
+#### timeline[].value
 
 The value of the point in time, in line with the timestamp of UTC an RFC3339-formatted time stamp in UTC (ending in “Z”), e.g. “2023-03-13T16:43Z”
 
