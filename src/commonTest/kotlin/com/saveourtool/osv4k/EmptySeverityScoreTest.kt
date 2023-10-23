@@ -3,10 +3,11 @@
 package com.saveourtool.osv4k
 
 import com.saveourtool.osv4k.OsvSchemaTestUtil.doEncodeDecodeAndCompare
-import kotlinx.serialization.json.Json
+
 import kotlin.test.Test
 import kotlin.test.assertContains
 import kotlin.test.assertFails
+import kotlinx.serialization.json.Json
 
 class EmptySeverityScoreTest {
     @Test
